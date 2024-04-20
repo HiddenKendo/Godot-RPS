@@ -14,6 +14,8 @@ var my_team: int
 var my_dir: Vector2
 var on_cool_down: bool = false
 
+signal converted_someone
+
 
 func _ready():
 	my_dir = Vector2.RIGHT.rotated(randf_range(0, TAU))
@@ -36,11 +38,13 @@ func _process(delta):
 			if other_team == teams.SCISSORS:
 				other_dude.update_team(teams.ROCK)
 				other_dude.velocity *= -1
+				converted_someone.emit()
 				velocity *= -1
 				other_dude.start_cooldown()
 			elif other_team == teams.PAPER:
 				update_team(teams.PAPER)
 				other_dude.velocity *= -1
+				converted_someone.emit()
 				velocity *= -1
 				start_cooldown()
 			
@@ -48,11 +52,13 @@ func _process(delta):
 			if other_team == teams.ROCK:
 				other_dude.update_team(teams.PAPER)
 				other_dude.velocity *= -1
+				converted_someone.emit()
 				velocity *= -1
 				other_dude.start_cooldown()
 			elif other_team == teams.SCISSORS:
 				update_team(teams.SCISSORS)
 				other_dude.velocity *= -1
+				converted_someone.emit()
 				velocity *= -1
 				start_cooldown()
 			
@@ -60,11 +66,13 @@ func _process(delta):
 			if other_team == teams.PAPER:
 				other_dude.update_team(teams.SCISSORS)
 				other_dude.velocity *= -1
+				converted_someone.emit()
 				velocity *= -1
 				other_dude.start_cooldown()
 			elif other_team == teams.ROCK:
 				update_team(teams.ROCK)
 				other_dude.velocity *= -1
+				converted_someone.emit()
 				velocity *= -1
 				start_cooldown()
 		#else:
