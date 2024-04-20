@@ -11,6 +11,10 @@ var my_team: int
 @onready var paper_image = preload("res://paper.png")
 @onready var scissors_image = preload("res://scissors.png")
 
+@onready var rock_sound = preload("res://rock.wav")
+@onready var paper_sound = preload("res://paper.wav")
+@onready var scissors_sound = preload("res://scissors.wav")
+
 var my_dir: Vector2
 var on_cool_down: bool = false
 
@@ -37,12 +41,14 @@ func _process(delta):
 		if my_team == teams.ROCK:
 			if other_team == teams.SCISSORS:
 				other_dude.update_team(teams.ROCK)
+				AudioManager.play_sound(rock_sound, "SFX", 0.1)
 				other_dude.velocity *= -1
 				converted_someone.emit()
 				velocity *= -1
 				other_dude.start_cooldown()
 			elif other_team == teams.PAPER:
 				update_team(teams.PAPER)
+				AudioManager.play_sound(paper_sound, "SFX", 0.1)
 				other_dude.velocity *= -1
 				converted_someone.emit()
 				velocity *= -1
@@ -51,12 +57,14 @@ func _process(delta):
 		elif my_team == teams.PAPER:
 			if other_team == teams.ROCK:
 				other_dude.update_team(teams.PAPER)
+				AudioManager.play_sound(paper_sound, "SFX", 0.1)
 				other_dude.velocity *= -1
 				converted_someone.emit()
 				velocity *= -1
 				other_dude.start_cooldown()
 			elif other_team == teams.SCISSORS:
 				update_team(teams.SCISSORS)
+				AudioManager.play_sound(scissors_sound, "SFX", 0.1)
 				other_dude.velocity *= -1
 				converted_someone.emit()
 				velocity *= -1
@@ -65,12 +73,14 @@ func _process(delta):
 		elif my_team == teams.SCISSORS:
 			if other_team == teams.PAPER:
 				other_dude.update_team(teams.SCISSORS)
+				AudioManager.play_sound(scissors_sound, "SFX", 0.1)
 				other_dude.velocity *= -1
 				converted_someone.emit()
 				velocity *= -1
 				other_dude.start_cooldown()
 			elif other_team == teams.ROCK:
 				update_team(teams.ROCK)
+				AudioManager.play_sound(rock_sound, "SFX", 0.1)
 				other_dude.velocity *= -1
 				converted_someone.emit()
 				velocity *= -1
