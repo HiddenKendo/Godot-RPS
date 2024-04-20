@@ -16,10 +16,10 @@ var my_dir: Vector2
 
 func _ready():
 	my_dir = Vector2.RIGHT.rotated(randf_range(0, TAU))
-	velocity = my_dir * SPEED
 
 
 func _process(delta):
+	velocity = my_dir * SPEED
 	move_and_slide()
 	global_position = Vector2(wrapf(global_position.x, 0, get_viewport_rect().size.x,),
 							  wrapf(global_position.y, 0, get_viewport_rect().size.y,))
