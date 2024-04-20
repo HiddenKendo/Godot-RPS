@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 enum teams {ROCK, PAPER, SCISSORS}
 
-const SPEED = 80
+const SPEED = 50
 var my_team: int
 @onready var sprite_2d = $Sprite2D
 
@@ -35,24 +35,41 @@ func _process(delta):
 		if my_team == teams.ROCK:
 			if other_team == teams.SCISSORS:
 				other_dude.update_team(teams.ROCK)
+				other_dude.velocity *= -1
+				velocity *= -1
 				other_dude.start_cooldown()
 			elif other_team == teams.PAPER:
 				update_team(teams.PAPER)
+				other_dude.velocity *= -1
+				velocity *= -1
 				start_cooldown()
+			
 		elif my_team == teams.PAPER:
 			if other_team == teams.ROCK:
 				other_dude.update_team(teams.PAPER)
+				other_dude.velocity *= -1
+				velocity *= -1
 				other_dude.start_cooldown()
 			elif other_team == teams.SCISSORS:
 				update_team(teams.SCISSORS)
+				other_dude.velocity *= -1
+				velocity *= -1
 				start_cooldown()
+			
 		elif my_team == teams.SCISSORS:
 			if other_team == teams.PAPER:
 				other_dude.update_team(teams.SCISSORS)
+				other_dude.velocity *= -1
+				velocity *= -1
 				other_dude.start_cooldown()
 			elif other_team == teams.ROCK:
 				update_team(teams.ROCK)
+				other_dude.velocity *= -1
+				velocity *= -1
 				start_cooldown()
+		#else:
+			#other_dude.velocity *= -1
+			#velocity *= -1
 
 
 func update_team(team_index: int):

@@ -2,7 +2,7 @@ extends Node2D
 
 
 var player_scene: PackedScene = preload("res://player.tscn")
-@export_range(1, 400) var num_players: float = 50
+@export_range(1, 1000) var num_players: float = 50
 
 
 func _ready():
