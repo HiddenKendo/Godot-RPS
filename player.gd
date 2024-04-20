@@ -12,6 +12,7 @@ var my_team: int
 @onready var scissors_image = preload("res://scissors.png")
 
 var my_dir: Vector2
+var on_cool_down: bool = false
 
 
 func _ready():
@@ -23,9 +24,38 @@ func _process(delta):
 	move_and_slide()
 	global_position = Vector2(wrapf(global_position.x, 0, get_viewport_rect().size.x,),
 							  wrapf(global_position.y, 0, get_viewport_rect().size.y,))
+	
+	var info: KinematicCollision2D = move_and_collide(velocity * delta, true)
+	if info:
+		var other_dude = info.get_collider()
+		if other_dude.on_cool_down: return
+		
+		var other_team: int = other_dude.my_team
+		
+		if my_team == teams.ROCK:
+			if other_team == teams.SCISSORS:
+				other_dude.update_team(teams.ROCK)
+				other_dude.start_cooldown()
+			elif other_team == teams.PAPER:
+				update_team(teams.PAPER)
+				start_cooldown()
+		elif my_team == teams.PAPER:
+			if other_team == teams.ROCK:
+				other_dude.update_team(teams.PAPER)
+				other_dude.start_cooldown()
+			elif other_team == teams.SCISSORS:
+				update_team(teams.SCISSORS)
+				start_cooldown()
+		elif my_team == teams.SCISSORS:
+			if other_team == teams.PAPER:
+				other_dude.update_team(teams.SCISSORS)
+				other_dude.start_cooldown()
+			elif other_team == teams.ROCK:
+				update_team(teams.ROCK)
+				start_cooldown()
 
 
-func update_texture(team_index: int):
+func update_team(team_index: int):
 	my_team = team_index
 	match my_team:
 		teams.ROCK:
@@ -34,3 +64,9 @@ func update_texture(team_index: int):
 			sprite_2d.texture = paper_image
 		teams.SCISSORS:
 			sprite_2d.texture = scissors_image
+
+
+func start_cooldown():
+	on_cool_down = true
+	await get_tree().create_timer(0.2).timeout
+	on_cool_down = false

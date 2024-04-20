@@ -2,7 +2,7 @@ extends Node2D
 
 
 var player_scene: PackedScene = preload("res://player.tscn")
-@export_range(1, 150) var num_players: float = 50
+@export_range(1, 400) var num_players: float = 50
 
 
 func _ready():
@@ -17,4 +17,4 @@ func spawn_player():
 											  randf()  * get_viewport_rect().size.y)
 	
 	var random_team_index: int = randi_range(0, 2)
-	player_instance.update_texture(random_team_index)
+	player_instance.update_team(random_team_index)
