@@ -1,9 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1713632690
+::res://::1713634049
 icon.svg::CompressedTexture2D::2805827279161043592::1713631199::1713631214::1::::<><>::
-main.tscn::PackedScene::104379464728245012::1713632629::0::1::::<><>::
+main.gd::GDScript::-1::1713633693::0::1::::<>Node2D<>::
+main.tscn::PackedScene::104379464728245012::1713633750::0::1::::<><>::res://main.gd
 paper.png::CompressedTexture2D::413371714272726245::1713632670::1713632692::1::::<><>::
-player.tscn::PackedScene::5339347016448356424::1713632654::0::1::::<><>::
+player.gd::GDScript::-1::1713633750::0::1::::<>Node2D<>::
+player.tscn::PackedScene::5339347016448356424::1713633763::0::1::::<><>::res://player.gd<>uid://f5if3sb7qdyj::::res://paper.png
 rock.png::CompressedTexture2D::3528725725005902950::1713632680::1713632692::1::::<><>::
 rockpaperscissors.png::CompressedTexture2D::5766870569591009486::1713631794::1713631855::1::::<><>::
 scissors.png::CompressedTexture2D::7264269271765535805::1713632690::1713632692::1::::<><>::
