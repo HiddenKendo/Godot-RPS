@@ -15,6 +15,10 @@ func _ready():
 		spawn_player()
 
 
+func _process(delta):
+	get_amount_teams()
+
+
 func spawn_player():
 	var player_instance = player_scene.instantiate()
 	add_child(player_instance)
@@ -26,6 +30,20 @@ func spawn_player():
 	player_instance.update_team(random_team_index)
 	
 	player_instance.converted_someone.connect(on_converted_someone)
+
+
+func get_amount_teams():
+	var rock_amount: int
+	var paper_amount: int
+	var scissors_amount: int
+	for i in player_array.size():
+		match player_array[i].my_team:
+			0: rock_amount += 1
+			1: paper_amount += 1
+			2: scissors_amount += 1
+	
+	var format_string = "Rocks-🥌: %s   Papers-🧻: %s   Scissors-✂: %s"
+	$CanvasLayer/AmountLabel.text = format_string % [rock_amount, paper_amount, scissors_amount]
 
 
 func on_converted_someone():
